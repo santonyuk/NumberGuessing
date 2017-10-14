@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 public class LandingActivity extends AppCompatActivity {
-    LandingActivity activity;
     Button startButton;
     
 
@@ -25,8 +24,8 @@ public class LandingActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(activity.getApplicationContext(), GuessingActivity.class);
-            activity.startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), GuessingActivity.class);
+            startActivity(intent);
         }
     });
     }
