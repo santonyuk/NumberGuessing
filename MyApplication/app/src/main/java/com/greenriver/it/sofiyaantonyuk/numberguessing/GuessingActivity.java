@@ -1,7 +1,9 @@
 package com.greenriver.it.sofiyaantonyuk.numberguessing;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +27,7 @@ public class GuessingActivity extends AppCompatActivity {
 
         //create random number
         randNumber = (int)(Math.random() * high + 1);
+        Log.d("d", "Random number: " + String.valueOf(randNumber));
     }
 
     void locateViews() {
@@ -51,16 +54,22 @@ public class GuessingActivity extends AppCompatActivity {
                 }
 
                 //check the number
-                //if random number == inputNumber
-                //then it's correct then result correct
-                //open results activity
+                if (randNumber == inputInt) {
+                    //then it's correct then result correct
+                    //open results activity
 
-                //Intent intent = new Intent(getApplicationContext(), GuessingActivity.class);
-                //startActivity(intent);
-
-                //if random numer >< inputNumber
-                //then not correct then result incorrect try again
-                //display toast to user that input is >< number
+                    Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                    startActivity(intent);
+                }
+                else if (randNumber > inputInt) {
+                    //number is higher
+                    Toast.makeText(getApplicationContext(), "Try again! The number is too low",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Try again! The number is too high",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
