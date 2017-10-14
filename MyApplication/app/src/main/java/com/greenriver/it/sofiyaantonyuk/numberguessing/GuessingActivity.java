@@ -10,12 +10,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class GuessingActivity extends AppCompatActivity {
+    public static String intentTag = "inputData";
     GuessingActivity activity;
     Button checkButton;
     EditText enterNumber;
     int randNumber;
     int low = 1;
     int high = 20;
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +59,21 @@ public class GuessingActivity extends AppCompatActivity {
                 if (randNumber == inputInt) {
                     //then it's correct then result correct
                     //open results activity
+                    counter++;
 
                     Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                    intent.putExtra(intentTag, String.valueOf(counter));
                     startActivity(intent);
+                    finish();
                 }
                 else if (randNumber > inputInt) {
                     //number is higher
+                    counter++;
                     Toast.makeText(getApplicationContext(), "Try again! The number is too low",
                             Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    counter++;
                     Toast.makeText(getApplicationContext(), "Try again! The number is too high",
                             Toast.LENGTH_SHORT).show();
                 }
